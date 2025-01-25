@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Define initial state
+// Defined initial state
 const initialState = {
   products: [],
-  cart: [], // Add cart state here
+  cart: [], // cart state here
   loading: false,
   error: null,
 };
 
-// Async thunk to fetch products
+//This is where the actual call takes place
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (_, { rejectWithValue }) => {
@@ -17,6 +17,7 @@ export const fetchProducts = createAsyncThunk(
       const response = await axios.get(
         'https://interview.gdev.gosbfy.com/api/collections/Products/records'
       );
+      //inorder to fetch the images the respective ids are passed from response of first api call
       const products = response.data.items.map((product) => ({
         ...product,
         imageUrl: `https://interview.gdev.gosbfy.com/api/files/${product.collectionId}/${product.id}/${product.image}`,
@@ -44,15 +45,10 @@ const productsSlice = createSlice({
         state.cart.push({ ...product, quantity: product.quantity });
       }
     },
-    updateCartQuantity: (state, action) => {
-      const { id, quantity } = action.payload;
-      const cartItem = state.cart.find((item) => item.id === id);
-      if (cartItem && quantity > 0) {
-        cartItem.quantity = quantity;
-      }
-    },
+
     removeFromCart: (state, action) => {
       const id = action.payload;
+      // as filter method returns new array it will have all the items execpt the id which is to be deleted
       state.cart = state.cart.filter((item) => item.id !== id);
     },
   },

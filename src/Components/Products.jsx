@@ -13,6 +13,7 @@ const ProductsList = () => {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
+    //this is where the api call is made with use of useDispatch
     dispatch(fetchProducts());
   }, [dispatch]);
 
@@ -29,6 +30,7 @@ const ProductsList = () => {
   const decrementQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleAddToCart = () => {
+    // Here we send the selected product with quantiy to be stored in state.
     dispatch(addToCart({ ...selectedProduct, quantity }));
     // closeModal(); // Close modal after adding to cart
   };
@@ -44,6 +46,8 @@ const ProductsList = () => {
     </div>
 
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {/* items are been mapped and rendered */}
+
         {products.map((product) => (
           <li
             key={product.id}

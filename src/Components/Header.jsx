@@ -9,7 +9,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to toggle the sidebar
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.products.cart); // Select cart items from Redux
+  const cartItems = useSelector((state) => state.products.cart); // Select cart items from Redux ,this  will used to display the items added in cart 
 
   const calculateSubtotal = () =>
     cartItems.reduce((total, item) => total + item.Price * item.quantity, 0);
@@ -66,6 +66,7 @@ const Header = () => {
       </div>
 
       {/* Sidebar Modal */}
+
       {isSidebarOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end z-50">
           <div className="bg-white w-[75%] md:w-[30%] h-full p-6 shadow-lg relative">
@@ -90,6 +91,7 @@ const Header = () => {
 
 
                   <div className="flex flex-col gap-4 overflow-y-auto h-[65%]">
+                  {/* items are been mapped and rendered */}
                     {cartItems.map((item) => (
                       <div
                         key={item.id}
@@ -109,6 +111,7 @@ const Header = () => {
                             </p>
                           </div>
                         </div>
+                        {/* here we call the removecart with the id of the item to be removed  */}
                         <button className="text-gray-500 hover:text-black" onClick={() => dispatch(removeFromCart(item.id))}>&times;</button>
                       </div>
                     ))}

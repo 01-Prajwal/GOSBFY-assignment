@@ -5,7 +5,8 @@ import ProductsList from './Components/Products'
 const App = () => {
   return (
     <div>
-      {/* <h1 className='font-bold text-4xl'>app</h1> */}
+    {/* Entry point of app where the header and productlist are rendered in ui  */}
+
       <Header/>
       <ProductsList/>
     </div>
