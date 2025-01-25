@@ -103,7 +103,7 @@ const ProductsList = () => {
                 alt={selectedProduct.Name}
                 className="w-[100%] md:w-1/2 md:h-auto h-[200px] rounded-lg object-cover"
               />
-              <div className="">
+              <div className="md:p-2 p-3">
                 <h2 className="text-2xl font-thin mb-2">{selectedProduct.Name}</h2>
                 <div className="flex items-center gap-2  mb-2">
                   <span className='font-bold text-sm'>Available :</span>
@@ -143,7 +143,7 @@ const ProductsList = () => {
                       +
                     </button>
                   </div>
-                  <button className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800" onClick={handleAddToCart}>
+                  <button className="bg-black text-white md:px-6 md:py-2 p-2 rounded hover:bg-gray-800" onClick={handleAddToCart}>
                     Add to cart
                   </button>
                   <button className="border border-gray-300 px-3 py-2 rounded hover:bg-gray-100">
